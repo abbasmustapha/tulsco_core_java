@@ -1,40 +1,47 @@
 package org.example;
 
-interface Computer
+interface A
 {
-    void code();
+    void show();
+    void config();
 }
-class Laptop implements Computer
+
+interface A2
 {
-    public void code(){
-        System.out.println("code, compile, run");
+    void show2();
+    void montre2();
+}
+
+class B implements A, A2 {
+
+    public void show() {
+        System.out.println("in show");
+    }
+
+    public void config() {
+        System.out.println("in config");
+    }
+
+    public void show2() {
+        System.out.println("in show2");
+    }
+
+    public void montre2() {
+        System.out.println("in montre2");
     }
 }
 
-class Desktop implements Computer
-{
-    public void code(){
-        System.out.println("code, compile, run : faster");
-    }
-}
-class Developer
-{
-    public void devApp(Computer comp)
-    {
-        comp.code();
-    }
-}
+
 
 public class Main {
     public static void main(String[] args) {
 
-        Computer lap = new Laptop();
-        Computer desk = new Desktop();
+        B obj = new B();
 
-        Developer navin = new Developer();
-        navin.devApp(lap);
-        navin.devApp(desk);
-
+        obj.show();
+        obj.config();
+        obj.show2();
+        obj.montre2();
         }
 }
 
