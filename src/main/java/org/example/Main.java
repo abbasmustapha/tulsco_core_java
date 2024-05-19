@@ -1,35 +1,47 @@
 package org.example;
 
 
-class A{
-    public void show(){
-        System.out.println("In A Show");
+// final
+/*
+    final variable : une fois affectée la valeur de la vaiable ne peut pas être modifiée (constante)
+    final class    : la classe ne peut pas être étendue (extended) cela stoppe l'héritage
+    final methode  : la méthode ne peut pas être re-definie (stoppe l'overriding)
+
+ */
+class Calc{
+
+    public final void show(){
+        System.out.println("in Calc show");
+    }
+
+    public void add (int n1, int n2) {
+        System.out.println(n1+n2);
     }
 }
 
-class B extends A{
-    public void show(){
-        System.out.println("In B Show");
-    }
-}
 
-class C extends A{
+class AdvClass extends Calc{
+    /*
+    // redefinition ci-dessous interdite
     public void show(){
-        System.out.println("In C Show");
+        System.out.println("in AdvClass show");
     }
-}
 
+     */
+
+}
 public class Main {
     public static void main(String[] args) {
 
-        A obj = new A();
-        obj.show();
+        final int num=8;
+        // réaffectation ci-dessous interdite
+        // num=12;
+        System.out.println(num);
 
-        obj = new B();
+        Calc obj = new Calc();
         obj.show();
+        obj.add(7,9);
 
-        obj = new C();
-        obj.show();
 
     }
 }
