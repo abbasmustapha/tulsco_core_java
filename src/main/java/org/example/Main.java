@@ -1,48 +1,26 @@
 package org.example;
 
-
-// class object
-
-import java.util.Objects;
-
-class Laptop{
-    String model;
-    int price;
-
-    public boolean equalsm(Laptop that){
-        return this.model.equals(that.model) && this.price== that.price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Laptop laptop = (Laptop) o;
-        return price == laptop.price && Objects.equals(model, laptop.model);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(model, price);
+class A{
+    public void show1(){
+        System.out.println("In A show1");
     }
 }
 
-
+class B extends A{
+    public void show2(){
+        System.out.println("In B show2");
+    }
+}
 public class Main {
     public static void main(String[] args) {
 
-        Laptop obj1 = new Laptop();
-        Laptop obj2 = new Laptop();
 
-        obj1.model = "Dell";
-        obj2.model = "Dell";
-        //obj2.model = "Apple";
+        A obj = (A) new B(); // upcasting
+        obj.show1();
 
-        obj1.price = 1000;
-        obj2.price = 1000;
-        //obj2.price = 1700;
-
-        System.out.println(obj1.equals(obj2));
+        B obj1 = (B)obj; // downcasting
+        obj1.show1();
+        obj1.show2();
 
 
     }
