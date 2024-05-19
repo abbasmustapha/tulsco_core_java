@@ -10,3 +10,4 @@ https://www.youtube.com/watch?v=4XTsAAHW_Tc
 7:34:40 downcasting upcasting
 7:49:20 abstract methode, class
 8:01:30 inner class
+8:07:11 anonymous class
