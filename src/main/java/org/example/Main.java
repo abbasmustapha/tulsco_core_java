@@ -1,47 +1,47 @@
 package org.example;
 
-interface A
-{
-    void show();
-    void config();
+enum Status{
+    Running, Failed, Pending, Success;
 }
 
-interface A2
-{
-    void show2();
-    void montre2();
-}
+enum Laptop{
+    MacBook(2000), Surface(1800), XPS(1600), Amstrad(1000), Goupil(2400), Comodore(500), oufiyey;
 
-class B implements A, A2 {
+    private int price;
 
-    public void show() {
-        System.out.println("in show");
+    Laptop() {
+        price=10;
     }
 
-    public void config() {
-        System.out.println("in config");
+    Laptop(int price) {
+        this.price = price;
+        System.out.println("in laptop " + this.name());
     }
 
-    public void show2() {
-        System.out.println("in show2");
+    public int getPrice() {
+        return price;
     }
 
-    public void montre2() {
-        System.out.println("in montre2");
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
-
-
 
 public class Main {
     public static void main(String[] args) {
 
-        B obj = new B();
+        int i = 5;
+        Status s = Status.Running;
+        System.out.println(s);
 
-        obj.show();
-        obj.config();
-        obj.show2();
-        obj.montre2();
+        for (Status value : Status.values()) {
+            System.out.println(value + " ordinal : "+value.ordinal()+" name : "+value.name());
         }
+
+        for (Laptop laptop: Laptop.values()){
+            System.out.println(laptop + " : " + laptop.getPrice());
+        }
+
+    }
 }
 
