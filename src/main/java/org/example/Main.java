@@ -1,46 +1,48 @@
 package org.example;
 
 
-// final
-/*
-    final variable : une fois affectée la valeur de la vaiable ne peut pas être modifiée (constante)
-    final class    : la classe ne peut pas être étendue (extended) cela stoppe l'héritage
-    final methode  : la méthode ne peut pas être re-definie (stoppe l'overriding)
+// class object
 
- */
-class Calc{
+import java.util.Objects;
 
-    public final void show(){
-        System.out.println("in Calc show");
+class Laptop{
+    String model;
+    int price;
+
+    public boolean equalsm(Laptop that){
+        return this.model.equals(that.model) && this.price== that.price;
     }
 
-    public void add (int n1, int n2) {
-        System.out.println(n1+n2);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Laptop laptop = (Laptop) o;
+        return price == laptop.price && Objects.equals(model, laptop.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(model, price);
     }
 }
 
 
-class AdvClass extends Calc{
-    /*
-    // redefinition ci-dessous interdite
-    public void show(){
-        System.out.println("in AdvClass show");
-    }
-
-     */
-
-}
 public class Main {
     public static void main(String[] args) {
 
-        final int num=8;
-        // réaffectation ci-dessous interdite
-        // num=12;
-        System.out.println(num);
+        Laptop obj1 = new Laptop();
+        Laptop obj2 = new Laptop();
 
-        Calc obj = new Calc();
-        obj.show();
-        obj.add(7,9);
+        obj1.model = "Dell";
+        obj2.model = "Dell";
+        //obj2.model = "Apple";
+
+        obj1.price = 1000;
+        obj2.price = 1000;
+        //obj2.price = 1700;
+
+        System.out.println(obj1.equals(obj2));
 
 
     }
