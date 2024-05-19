@@ -1,40 +1,40 @@
 package org.example;
 
-class A
+interface Computer
 {
-    public void show()
-    {
-        System.out.println("in A show");
+    void code();
+}
+class Laptop implements Computer
+{
+    public void code(){
+        System.out.println("code, compile, run");
     }
 }
 
-abstract class B
+class Desktop implements Computer
 {
-    public abstract void montre();
+    public void code(){
+        System.out.println("code, compile, run : faster");
+    }
 }
+class Developer
+{
+    public void devApp(Computer comp)
+    {
+        comp.code();
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
 
-        A obj = new A();
-        obj.show();
+        Computer lap = new Laptop();
+        Computer desk = new Desktop();
 
-        // on redefinit une inner class sans nom donc anonymous
-        A obj2 = new A(){
-          public void show()
-          {
-              System.out.println("in new show");
-          }
-        };
+        Developer navin = new Developer();
+        navin.devApp(lap);
+        navin.devApp(desk);
 
-        obj2.show();
-
-        B objB = new B() {
-            @Override
-            public void montre() {
-                System.out.println("suis dans B.montre !");
-            }
-        };
-        objB.montre();
-    }
+        }
 }
 

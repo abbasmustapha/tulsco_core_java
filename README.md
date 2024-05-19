@@ -11,3 +11,4 @@ https://www.youtube.com/watch?v=4XTsAAHW_Tc
 7:49:20 abstract methode, class
 8:01:30 inner class
 8:07:11 anonymous class
+8:16:00 need of interface
