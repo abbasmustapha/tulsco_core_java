@@ -5,25 +5,20 @@ class A {
         System.out.println("suis dans constructeur de A !");
     }
 
-    public A(int n) {
-        System.out.println("suis dans constructeur de A n !");
+    public void show() {
+        System.out.println("suis dans A.show() !");
     }
 }
 
-class B extends A {
-    public B() {
-        System.out.println("suis dans constructeur de B !");
-    }
 
-    public B(int n) {
-        //super(n);
-        this();
-        System.out.println("suis dans constructeur de B n !");
-    }
-}
 public class Main {
     public static void main(String[] args) {
-        B obj = new B(9);
+        // anonymous object pas de nom de variable donc pas dans la stack just dans le heap !
+        new A().show();
+
+        // pareil mais avec nom de variable donc réutilisable et créé dans la stack
+        A objA = new A();
+        objA.show();
     }
 }
 
