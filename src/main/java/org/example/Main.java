@@ -1,27 +1,19 @@
 package org.example;
 
-
-
-class A {
-    public void show(){
-        System.out.println("I am in A.show()");
-    }
-}
-
-class B extends A{
-    public void show(){
-        System.out.println("I am in B.show()");
-    }
-}
-
+import org.tools.*;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        B b = new B();
+        Calc calc = new Calc();
+        AdvCalc advCalc = new AdvCalc();
+        int r1 = advCalc.add(1, 2);
+        int r2 = advCalc.sub(2, 3);
+        int r3 = advCalc.mult(4, 5);
+        int r4 = advCalc.div(12, 5);
 
-        b.show();
+        System.out.println( "r1:" +r1+"   r2:"+r2+"   r3:"+r3+"   r4:"+r4);
 
     }
 }
