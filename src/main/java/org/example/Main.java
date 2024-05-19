@@ -1,19 +1,38 @@
 package org.example;
 
-import org.tools.*;
+import org.other.A;
 
 
 public class Main {
     public static void main(String[] args) {
 
-        Calc calc = new Calc();
-        AdvCalc advCalc = new AdvCalc();
-        int r1 = advCalc.add(1, 2);
-        int r2 = advCalc.sub(2, 3);
-        int r3 = advCalc.mult(4, 5);
-        int r4 = advCalc.div(12, 5);
+        /* 7:03:37
+                                PUBLIC          PRIVATE         PROTECTED           DEFAULT
 
-        System.out.println( "r1:" +r1+"   r2:"+r2+"   r3:"+r3+"   r4:"+r4);
+        Same class              YES             YES             YES                 YES
+
+        Same package            YES             NO              YES                 YES
+        subclass
+
+        Same package            YES             NO              YES                 YES
+        non-subclass
+
+        Different package       YES             NO              YES                 NO
+        subclass
+
+        Different package       YES             NO              NO                  NO
+        non-subclass
+
+
+
+
+         */
+
+        A objA = new A();
+        B objB = new B();
+
+        System.out.println(objA.marks); // marks doit être public car pas dans le meme package
+        System.out.println(objB.bmarks); // bmarks default accessible car dans le meme package
 
     }
 }
