@@ -1,24 +1,20 @@
 package org.example;
 
-class A {
-    public A() {
-        System.out.println("suis dans constructeur de A !");
-    }
-
-    public void show() {
-        System.out.println("suis dans A.show() !");
-    }
-}
-
 
 public class Main {
     public static void main(String[] args) {
-        // anonymous object pas de nom de variable donc pas dans la stack just dans le heap !
-        new A().show();
 
-        // pareil mais avec nom de variable donc réutilisable et créé dans la stack
-        A objA = new A();
-        objA.show();
+        Calc calc = new Calc();
+        AdvCalc advCalc = new AdvCalc();
+
+        int r1 = calc.add(5,6);
+        int r2 = calc.sub(7,3);
+        int r3 = advCalc.multi(7,3);
+        int r4 = advCalc.div(15,4);
+        int r5 = advCalc.add(15,4);
+
+        System.out.println("r1 = " + r1 +"   r2 = "+r2+"   r3 = " + r3 +"   r4 = "+r4+"   r5 = "+r5);
+
     }
 }
 
