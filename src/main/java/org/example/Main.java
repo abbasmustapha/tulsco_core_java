@@ -34,9 +34,7 @@ public class Main {
                 System.out.println("suis dans B.montre !");
             }
         };
-
         objB.montre();
-
     }
 }
 
