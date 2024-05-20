@@ -14,3 +14,6 @@ https://www.youtube.com/watch?v=4XTsAAHW_Tc
 8:16:00 need of interface
 8:24:00 interfaces
 8:35:18 enumeration
+8:53:48 annotations
+9:01:20 Types of interface : Normal, Functional or SAM (Single Abstract Methode), Marker (no methode blank interface)
+9:05:50 Functional interface, lambda expression
