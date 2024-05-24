@@ -1,77 +1,42 @@
 package org.example;
 
-
-class MabException extends Exception{
-
-    public MabException(String s) {
-        super(s);
-    }
-}
-
-class A{
-
-    public void show(B b, C c){
-        try {
-            b.showB();
-        } catch (Exception e) {
-            System.out.println("Pb dans showB:"+e);
-        }
-        try {
-            c.showC();
-        } catch (Exception e) {
-            System.out.println("Pb dans showC:"+e);
-        }
-    }
-
-
-}
-
-class B{
-    public void showB() throws Exception{
-        int j = 8/0;
-        System.out.println("Je suis dans B showB j="+j);
-    }
-}
-
-class C{
-    public void showC() throws Exception{
-        int[] k = new int[3];
-        System.out.println();
-        System.out.println("Je suis dans C showC k[3]="+k[3]);
-    }
-}
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        int i = 20;
-        int j = 0;
+    public static void main(String[] args) throws IOException {
 
-        int[] nums = new int[5];
+        System.out.println("A que coucou combien ? ");
 
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        System.out.println(num);
+        int num2 =0;
+
+        BufferedReader br = null;
         try {
-            j = 18 / i;
-            if(j==0)
-                throw new MabException("je veux pas de zero ! ");
-            System.out.println(nums[1]);
-            System.out.println(nums[5]);
+            System.out.println("donnez un autre nombre : ");
+
+            br = new BufferedReader(new InputStreamReader(System.in));
+            num2 = Integer.parseInt(br.readLine());
+            System.out.println(num2);
+
         }
-        catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Limite index dépassée !"+e);
-        }
-        catch (MabException e) {
-            j=18/1;
-            System.out.println("suis dans catch MabException avec e = "+e+ " message : " + e.getMessage());
+        finally {
+           //  br.close();
         }
 
-        System.out.println(j);
-        System.out.println("Bye");
+        int num3=0;
 
-        A a = new A();
-        B b = new B();
-        C c = new C();
+        try(BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in))) {
+            System.out.println("encore un nombre : ");
+            num3 = Integer.parseInt(br2.readLine());
+            System.out.println(num3);
+        }
 
-        a.show( b, c);
 
     }
 }
