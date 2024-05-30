@@ -1,42 +1,49 @@
 package org.example;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
 
+class A extends Thread{
+    public void run(){
+        for (int i = 0; i < 100; i++) {
+
+            System.out.println("Hi : "+i);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+class B extends Thread{
+    public void run(){
+        for (int i = 0; i < 100; i++) {
+
+            System.out.println("Hello : "+i);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("A que coucou combien ? ");
+        A a = new A();
+        B b = new B();
 
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        System.out.println(num);
-        int num2 =0;
+        System.out.println(a.getPriority());
+        System.out.println(b.getPriority());
 
-        BufferedReader br = null;
+        a.start();
         try {
-            System.out.println("donnez un autre nombre : ");
-
-            br = new BufferedReader(new InputStreamReader(System.in));
-            num2 = Integer.parseInt(br.readLine());
-            System.out.println(num2);
-
-        }
-        finally {
-           //  br.close();
-        }
-
-        int num3=0;
-
-        try(BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("encore un nombre : ");
-            num3 = Integer.parseInt(br2.readLine());
-            System.out.println(num3);
-        }
-
+            Thread.sleep(2);
+        } catch (InterruptedException e) { throw new RuntimeException(e); }
+        b.start();
 
     }
 }
