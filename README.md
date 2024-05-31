@@ -19,4 +19,5 @@ https://www.youtube.com/watch?v=4XTsAAHW_Tc
 9:05:50 Functional interface, lambda expression
 9:18:40 Exceptions
 10:03:40 input from the user, try, finally, try with ressources
-10:23:31 threads
+10:23:31 threds
+11:11:50 collections list set map iterator stream
