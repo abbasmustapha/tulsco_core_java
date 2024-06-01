@@ -21,3 +21,5 @@ https://www.youtube.com/watch?v=4XTsAAHW_Tc
 10:03:40 input from the user, try, finally, try with ressources
 10:23:31 threds
 11:11:50 collections list set map iterator stream
+12:38:00 LVTI (Local Variable Type Inference) var 
+12:47:50 Sealed class
