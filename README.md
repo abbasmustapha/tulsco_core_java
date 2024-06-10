@@ -24,3 +24,5 @@ https://www.youtube.com/watch?v=4XTsAAHW_Tc
 12:38:00 LVTI (Local Variable Type Inference) var 
 12:47:50 Sealed class
 12:57:10 Record classes
+13:13:09 Junit 5 testing
+23:12:20 JDBC  Data Definition Language (DDL), Data Modification Language (DML), Data Query Language (DQL), Transaction Control Language (TCL) 

@@ -1,69 +1,72 @@
 package org.example;
 
-import java.util.Objects;
-
-class Alien {
-
-    private int id;
-    private String name;
-
-    public Alien(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Alien{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Alien alien = (Alien) o;
-        return id == alien.id && Objects.equals(name, alien.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
-}
-
-
-record Alien2(int id, String name) {}
+import java.sql.*;
 
 public class Main {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        System.out.println("Coucou");
+        String url = "jdbc:mysql://localhost:3306/telusco";
+        String uname = "root";
+        String pass = "sysadm";
+        String query = "select s.* from student s where s.studentId>0";
+       // String query2 = "INSERT INTO student (studentId, studentName, studentEmail, studentBirthDate) " +
+       //         "VALUES ('6', 'Six', 'sixieme@gmail.fr', '2006/06/16')";
 
-        Alien a1 = new Alien(1,"premier");
-        Alien a2 = new Alien(2,"second");
-        Alien a3 = new Alien(2,"second");
+        Connection con = DriverManager.getConnection(url,uname,pass);
 
-        System.out.println(a1);
-        System.out.println(a2);
+        Statement st = con.createStatement();
 
-        System.out.println(a2.equals(a3));
 
-        // même chose avec le record
+      //  int count = st.executeUpdate(query2);
+      //  System.out.println(count + "row/s affected");
 
-        System.out.println("même chose avec le record : ");
+        ResultSet sr = st.executeQuery(query);
 
-        Alien2 b1 = new Alien2(1,"premier");
-        Alien2 b2 = new Alien2(2,"second");
-        Alien2 b3 = new Alien2(2,"second");
 
-        System.out.println(b1);
-        System.out.println(b2);
-        System.out.println(b2.name());
+        while (sr.next()){
+            System.out.println(sr.getString(1) + " : " + sr.getString(2) + "   " + sr.getString(3));
+        }
 
-        System.out.println(b2.equals(b3));
-     }
+        // Prepared Statement
+        int studentid = 7;
+        String studentName="ElMostafa";
+        String studentMail="faya@alkafi.ma";
+        // Date studentBirthDate= Date.valueOf("2007/08/22");
+        String query3 = "INSERT INTO student " +
+                "(studentId, studentName, studentEmail) VALUES (?,?,?)";
+        PreparedStatement ps = con.prepareStatement(query3);
+        ps.setInt(1,studentid);
+        ps.setString(2,studentName);
+        ps.setString(3,studentMail);
+        // ps.setDate(4,studentBirthDate);
+
+        int count2 = ps.executeUpdate();
+        System.out.println(count2 + "row/s affected");
+
+
+        st.close();
+        con.close();
+
+    }
 }
+
+
+/*
+
+CREATE TABLE `telusco`.`student` (
+        `studentId` INT NOT NULL,
+        `studentName` VARCHAR(45) NULL,
+  `studentEmail` VARCHAR(45) NULL,
+  `studentBirthDate` DATE NULL,
+PRIMARY KEY (`studentId`));
+
+INSERT INTO `telusco`.`student` (`studentId`, `studentName`, `studentEmail`, `studentBirthDate`)
+VALUES ('1', 'Premier', 'premier@gmail.com', '1990/01/02');
+INSERT INTO `telusco`.`student` (`studentId`, `studentName`, `studentEmail`, `studentBirthDate`)
+VALUES ('2', 'Second', 'second@aol.fr', '1992/11/09');
+INSERT INTO `telusco`.`student` (`studentId`, `studentName`, `studentEmail`, `studentBirthDate`)
+VALUES ('3', 'Troisieme', 'trois.ter@yahoo.fr', '1997/07/23');
+*/
+
+
